@@ -1,6 +1,5 @@
 package homework.lab2;
 
-import lombok.Data;
 import lombok.ToString;
 
 /**
@@ -18,5 +17,40 @@ public class Client {
         this.bonus = bonus;
         this.name = name;
         this.salary = salary;
+    }
+
+    public static class ClientBuilder {
+        private int debt = ClientConstants.DEFAULT_DEBT;
+        private int bonus = ClientConstants.DEFAULT_BONUS;
+        private String name = ClientConstants.DEFAULT_NAME;
+        private int salary = ClientConstants.DEFAULT_SALARY;
+
+        public ClientBuilder debt(int debt) {
+            this.debt = debt;
+            return this;
+        }
+
+        public ClientBuilder bonus(int bonus) {
+            this.bonus = bonus;
+            return this;
+        }
+
+        public ClientBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public ClientBuilder salary(int salary) {
+            this.salary = salary;
+            return this;
+        }
+
+        public Client builder() {
+            if (debt == ClientConstants.DEFAULT_DEBT || bonus == ClientConstants.DEFAULT_BONUS ||
+                    name.equals(ClientConstants.DEFAULT_NAME) || salary == ClientConstants.DEFAULT_SALARY) {
+                throw new IllegalArgumentException("One of the arguments was not set!");
+            }
+            return new Client(debt, bonus, name, salary);
+        }
     }
 }
