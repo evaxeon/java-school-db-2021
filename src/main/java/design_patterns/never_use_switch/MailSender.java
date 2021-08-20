@@ -20,7 +20,6 @@ public class MailSender {
         actions.put(2, new Command() {
             @Override
             public void send(MailInfo mailInfo) {
-                //50 lines of code which send welcome mail
                 System.out.println("Happy Birthday mail was sent "+mailInfo.getContext());
             }
         });
