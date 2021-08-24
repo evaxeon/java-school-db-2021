@@ -1,6 +1,9 @@
 package java8.streams_examples.homework;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -9,23 +12,14 @@ import java.util.stream.Stream;
  */
 public class BlackFridayService {
 
-    public void printBlackFridayPerYearSorted(int startYear, int endYear) {
-
-        //todo do that!!!!!
-
-//        IntStream.range(startYear,endYear)
-
-//        Stream.iterate(startDate,date ->date.plusDay() )
-
-//        Stream.generate()
-
-        // 1972 - 3
-        // 1984 - 3
-        // 1986 - 3
-        // 1902 - 3
-        // 1901 - 2
-        // 1917 - 2
-        // 1915 - 2
-        // 1911 - 1
+    public static void printBlackFridayPerYearSorted(int startYear, int endYear) {
+        Stream.iterate(LocalDate.of(startYear, 1, 1), ourdate -> ourdate.plusDays(1))
+                .takeWhile(ourDate -> ourDate.getYear() <= endYear)
+                .filter(ourDate -> ourDate.getDayOfWeek() == DayOfWeek.FRIDAY)
+                .filter(ourDate -> ourDate.getDayOfMonth() == 13)
+                .collect(Collectors.groupingBy(LocalDate::getYear, Collectors.counting()))
+                .entrySet().stream()
+                .sorted(Comparator.comparing(e -> -e.getValue()))
+                .forEach(e -> System.out.println(e.getKey() + " - " + e.getValue()));
     }
 }
