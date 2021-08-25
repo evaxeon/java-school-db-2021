@@ -7,7 +7,7 @@ import com.db.model.Person;
  */
 public class Main {
     public static void main(String[] args) {
-        IRobot iRobot = new IRobot();
-        iRobot.cleanRoom();
+        RobotFactory robotFactory = new RobotFactory(ObjectFactory.getInstance());
+        robotFactory.createRobot(IRobot.class).cleanRoom();
     }
 }

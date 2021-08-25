@@ -19,7 +19,7 @@ public class ObjectFactory {
         if (type.isInterface()) {
             type = config.getImplClass(type);
         }
-
+        System.out.println(type); // debug purposes
         T t = type.getDeclaredConstructor().newInstance();
 
         Field[] declaredFields = type.getDeclaredFields();
@@ -30,6 +30,8 @@ public class ObjectFactory {
                 field.setInt(t, ObjectUtils.randomIntInRange(annotation.min(), annotation.max()));
             }
         }
+
+
 
         return t;
     }
