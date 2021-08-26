@@ -1,19 +1,20 @@
 package my_spring;
 
+import object_casting.Animal;
+
+import java.rmi.dgc.DGC;
+
 /**
  * @author Evgeny Borisov
  */
 public class IRobot {
-    @InjectByType
-    private Speaker speaker;
-    @InjectByType
-    private Cleaner cleaner;
+    //todo make support for @InjectByType
+    @Inject
+    private Speaker speaker = ObjectFactory.getInstance().createObject(Speaker.class);
+    @Inject
+    private Cleaner cleaner = ObjectFactory.getInstance().createObject(Cleaner.class);
 
-    public void init() { //todo teach our framework to run all methods which starts with init
-        System.out.println(cleaner.getClass());
-    }
-
-    public void cleanRoom() {
+    public void cleanRoom(){
         speaker.speak("Я начал работать");
         cleaner.clean();
         speaker.speak("Я закончил работать");
