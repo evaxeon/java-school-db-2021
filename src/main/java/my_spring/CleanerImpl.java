@@ -6,7 +6,7 @@ import javax.annotation.PostConstruct;
  * @author Evgeny Borisov
  */
 @Benchmark
-public final class CleanerImpl implements Cleaner {
+public class CleanerImpl implements Cleaner {
 
     @InjectRandomInt(min = 3, max = 5)
     private int repeat;

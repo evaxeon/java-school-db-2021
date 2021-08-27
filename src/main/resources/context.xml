@@ -6,7 +6,9 @@
 
 
     <bean class="real_spring.InjectRandomIntAnnotationBeanPostProcessor"/>
+    <bean class="real_spring.InjectRandomNameAnnotationBeanPostProcessor"/>
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+
 
 
 
